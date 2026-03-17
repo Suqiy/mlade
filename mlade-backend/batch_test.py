@@ -1,97 +1,117 @@
-"""Batch test: run multiple questions through the pipeline and print a summary table."""
+"""Batch test: run multiple questions through the full pipeline, save detailed CSV."""
 
 import sys
 import os
+import csv
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from main import run_pipeline
 
-# Questions: (question, expected_label, note)
-# expected_label: "Not Hallucinated" or "Hallucinated"
 QUESTIONS = [
-    # --- Should NOT hallucinate (ground truth checks) ---
-    ("What is the capital of China?",                          "Not Hallucinated", "Easy factual"),
-    ("What is the chemical formula for water?",                "Not Hallucinated", "Easy science"),
-    ("Who wrote Romeo and Juliet?",                            "Not Hallucinated", "Famous author"),
-
-    # --- Likely to hallucinate ---
-    ("What is the capital of Australia?",                      "Not Hallucinated", "LLMs often say Sydney"),
-    ("In what year did the Titanic sink?",                     "Not Hallucinated", "1912"),
-    ("Who was the first person to reach the South Pole?",      "Not Hallucinated", "Amundsen 1911"),
-    ("How many moons does Mars have?",                         "Not Hallucinated", "2 moons"),
-    ("What year did Einstein win the Nobel Prize?",            "Not Hallucinated", "1921 (not 1905)"),
-    ("Who invented the telephone?",                            "Not Hallucinated", "Disputed: Bell vs Gray"),
-    ("What is the longest river in the world?",                "Not Hallucinated", "Amazon vs Nile dispute"),
+    ("What is the capital of China?",     "Not Hallucinated", "Easy factual"),
+    ("What is the capital of Australia?", "Not Hallucinated", "LLMs often say Sydney"),
 ]
 
 
 def main():
     results = []
+
     for question, expected, note in QUESTIONS:
         print(f"\n{'='*70}")
         print(f"TESTING: {question}")
         print(f"{'='*70}")
         try:
             r = run_pipeline(question)
-            results.append({
-                "question": question,
-                "note": note,
-                "expected": expected,
-                "llm_answer": r["original_answer"],
-                "gate": r["gate_decision"],
-                "consistency": r["consistency_score"],
-                "rag_label": r["rag_label"],
-                "rag_conf": r["rag_confidence"],
-                "agree": r["gate_rag_agree"],
-                "corrected": r.get("corrected_answer"),
-                "time_no_rag": r["time_without_rag"],
-                "time_rag": r["time_with_rag"],
-            })
+
+            ml = r.get("multilingual_responses", {})
+            pair_sims = r.get("pair_similarities", [])
+            claims = r.get("claims", [])
+
+            row = {
+                # 基本信息
+                "question":           question,
+                "note":               note,
+                "expected":           expected,
+                "llm_answer":         r["original_answer"],
+                "corrected_answer":   r.get("corrected_answer", ""),
+
+                # Stage 2
+                "consistency_score":  r["consistency_score"],
+                "gate_decision":      r["gate_decision"],
+
+                # Stage 3
+                "rag_label":          r["rag_label"],
+                "rag_confidence":     r["rag_confidence"],
+                "gate_rag_agree":     r["gate_rag_agree"],
+
+                # 时间
+                "time_without_rag_s": r["time_without_rag"],
+                "time_with_rag_s":    r["time_with_rag"],
+                "rag_extra_cost_s":   r["rag_extra_cost"],
+                "retrieval_time_s":   r["retrieval_time"],
+
+                # 多语言回答
+                "en_question":  ml.get("en", {}).get("question", ""),
+                "en_answer":    ml.get("en", {}).get("response", ""),
+                "ar_question":  ml.get("ar", {}).get("question", ""),
+                "ar_answer":    ml.get("ar", {}).get("response", ""),
+                "ja_question":  ml.get("ja", {}).get("question", ""),
+                "ja_answer":    ml.get("ja", {}).get("response", ""),
+                "ru_question":  ml.get("ru", {}).get("question", ""),
+                "ru_answer":    ml.get("ru", {}).get("response", ""),
+
+                # 语言对相似度
+                **{f"sim_{p['lang_a']}_{p['lang_b']}": round(p["similarity"], 4) for p in pair_sims},
+
+                # 证据链（最多3条claim）
+                **{f"claim_{i+1}": c["claim"] for i, c in enumerate(claims[:3])},
+                **{f"claim_{i+1}_nli": c["nli_result"] for i, c in enumerate(claims[:3])},
+                **{f"claim_{i+1}_evidence": c["evidence"][:120] if c["evidence"] else "" for i, c in enumerate(claims[:3])},
+
+                "error": "",
+            }
+            results.append(row)
+
         except Exception as e:
             results.append({
-                "question": question,
-                "note": note,
-                "expected": expected,
-                "error": str(e),
+                "question": question, "note": note,
+                "expected": expected, "error": str(e),
             })
+            print(f"  -> ERROR: {e}")
 
-    # Print summary table
-    print("\n\n")
-    print("=" * 100)
-    print("BATCH TEST SUMMARY")
-    print("=" * 100)
-    print(f"{'#':<3} {'Question':<48} {'Gate':<12} {'Score':<7} {'RAG':<18} {'Agree':<7} {'Note'}")
-    print("-" * 100)
-
-    for i, r in enumerate(results, 1):
-        if "error" in r:
-            print(f"{i:<3} {r['question'][:47]:<48} ERROR: {r['error'][:40]}")
-            continue
-        gate = "Skip" if r["gate"] == "skip_rag" else "Trigger"
-        score = f"{r['consistency']:.3f}"
-        rag = r["rag_label"]
-        agree = "✓" if r["agree"] else "✗"
-        note = r["note"]
-        print(f"{i:<3} {r['question'][:47]:<48} {gate:<12} {score:<7} {rag:<18} {agree:<7} {note}")
-
-    print("-" * 100)
-
-    # Count stats
-    total = len([r for r in results if "error" not in r])
-    gate_triggers = sum(1 for r in results if "error" not in r and r["gate"] == "trigger_rag")
-    rag_hallucinated = sum(1 for r in results if "error" not in r and r["rag_label"] == "Hallucinated")
-    agrees = sum(1 for r in results if "error" not in r and r["agree"])
-
-    print(f"\nStats: {total} questions | Gate triggered: {gate_triggers}/{total} | "
-          f"RAG flagged hallucination: {rag_hallucinated}/{total} | Gate-RAG agree: {agrees}/{total}")
-
-    print("\nHallucinated answers (with corrections):")
+    # 收集所有出现过的字段
+    all_keys = []
+    seen = set()
     for r in results:
-        if "error" not in r and r["rag_label"] == "Hallucinated":
-            print(f"  Q: {r['question']}")
-            print(f"  LLM: {r['llm_answer']}")
-            print(f"  Corrected: {r['corrected']}")
-            print()
+        for k in r:
+            if k not in seen:
+                all_keys.append(k)
+                seen.add(k)
+
+    # 保存 CSV
+    csv_file = "results.csv"
+    with open(csv_file, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=all_keys)
+        writer.writeheader()
+        for r in results:
+            writer.writerow({k: r.get(k, "") for k in all_keys})
+
+    print(f"\n\n结果已保存到 {csv_file}")
+
+    # 打印汇总表
+    print("\n" + "="*100)
+    print(f"{'#':<3} {'Question':<45} {'Gate':<12} {'Score':<7} {'RAG':<18} {'Agree':<6} {'Time(no RAG)':<13} {'Time(RAG)'}")
+    print("-"*100)
+    for i, r in enumerate(results, 1):
+        if r.get("error"):
+            print(f"{i:<3} {r['question'][:44]:<45} ERROR: {r['error'][:40]}")
+            continue
+        gate = "Skip" if r["gate_decision"] == "skip_rag" else "Trigger"
+        agree = "✓" if r["gate_rag_agree"] else "✗"
+        print(f"{i:<3} {r['question'][:44]:<45} {gate:<12} {r['consistency_score']:<7} "
+              f"{r['rag_label']:<18} {agree:<6} {r['time_without_rag_s']}s{'':<8} {r['time_with_rag_s']}s")
+    print("="*100)
 
 
 if __name__ == "__main__":
