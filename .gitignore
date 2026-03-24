@@ -29,6 +29,9 @@ data/raw/
 data/processed/
 data/other/
 !data/sample/
+# (可选) 允许保留文件夹结构，但忽略里面的文件
+!data/raw/.gitkeep
+!data/processed/.gitkeep
 
 # ========================
 # 4. 敏感信息与本地配置
