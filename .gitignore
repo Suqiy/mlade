@@ -1,0 +1,58 @@
+# ========================
+# 1. 操作系统自动生成的隐藏文件
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# 2. 代码编辑器的配置文件
+# ========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========================
+# 3. 数据集与大型文件
+# ========================
+# 忽略所有常见的表格和数据格式
+*.csv
+*.xlsx
+*.tsv
+*.dat
+
+# 忽略 data 文件夹下的特定子目录（保留 sample 供测试）
+data/raw/
+data/processed/
+data/other/
+!data/sample/
+
+# ========================
+# 4. 敏感信息与本地配置
+# ========================
+.env
+*.pem
+*.key
+config/local_settings.json
+
+# ========================
+# 5. 环境变量与安全密钥
+# ========================
+# 忽略所有的 .env 文件及其变体
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 忽略其他可能存储密码的常见配置文件
+secrets.json
+credentials.json
+config.ini
+keys.js
+
+# 确保示例文件不被忽略
+!.env.example
