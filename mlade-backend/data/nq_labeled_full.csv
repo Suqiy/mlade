@@ -1,0 +1,101 @@
+id,label,reason
+1,HALLUCINATION,"The answer to evaluate '2021-08-03' is completely different from the reference answer '14 December 1972 UTC' in year, month, and day."
+2,HALLUCINATION,"The answer claims 'Joe South wrote the lyrics in 1967', but the reference answer only states 'Bobby Scott' and provides no information about Joe South, lyrics, or the year 1967."
+3,HALLUCINATION,"The answer claims '3', which is not present in the reference answer 'one'."
+4,CONSISTENT,The answer '2017' is identical to the reference answer '2017'.
+5,HALLUCINATION,The claim that UConn won last year's NCAA women's basketball championship is not present in the reference answer 'South Carolina'.
+6,HALLUCINATION,"The date 265,000 BCE falls significantly before the generally accepted start of the Last Glacial Period (often referred to as 'the last Ice Age'), which began approximately 115,000 years ago."
+7,HALLUCINATION,The answer claims 'Justin Bieber' which is a different individual than 'Rihanna' provided in the reference answer.
+8,CONSISTENT,The answer to evaluate exactly matches the reference answer.
+9,HALLUCINATION,"The answer claims 'It adds a hot coffee item to the menus', but the reference only mentions 'a normally inaccessible mini-game' and does not contain any information about hot coffee or menus."
+10,CONSISTENT,"The answer to evaluate '54 Mbps' is a standard and equivalent abbreviation for '54 Mbit/s' provided in the reference answer, with both the numerical value and the unit being consistent."
+11,HALLUCINATION,"The reference answer 'New Testament' does not contain any information about Mary Magdalene or the number of times she is mentioned, thus the claims in the answer to evaluate cannot be verified against the provided source."
+12,PARTIAL,"The answer correctly identifies 'military aide' as consistent with 'aide-de-camp', but the specification 'The President's' is not explicitly stated or confirmed by the reference answer, as an aide-de-camp can serve various high-ranking officials, not exclusively a President."
+13,PARTIAL,"The answer correctly states the origin is Greek, which is consistent with the reference, but adds specific details about the Greek word 'κυνός' and its meanings ('dog's tooth' or 'moon') that are not present in the reference answer."
+14,HALLUCINATION,The answer to evaluate 'Corey Burton' is not present in the reference answer 'Buzz' Brainard.
+15,CONSISTENT,The answer to evaluate exactly matches the reference answer.
+16,HALLUCINATION,The answer claims '2023' but the reference states 'March 2018'.
+17,HALLUCINATION,"The answer introduces information about Selena Gomez, Mavis, and Hotel Transylvania, none of which are mentioned or supported by the reference answer 'Sadie Sandler'."
+18,HALLUCINATION,The answer to evaluate '105' is not present in the reference answer '768 (HD)'.
+19,HALLUCINATION,"The answer provides specific dates that are not mentioned or supported by the reference answer, which only states 'the new Wembley Stadium'."
+20,HALLUCINATION,"The answer claims the year is 2019, but the reference states the year is 2015."
+21,HALLUCINATION,The answer '4' is not present or implied in the reference answer 'Martin Peters'.
+22,HALLUCINATION,The answer to evaluate lists multiple names and a band that are not present in the reference answer 'Jan Hammer'.
+23,HALLUCINATION,The answer 'Kehlani' is a completely different musical artist than 'Jamey Johnson' provided in the reference.
+24,PARTIAL,The answer includes the correct name 'Kurt Russell' but also contains additional names not present in the reference answer.
+25,HALLUCINATION,"The answer claims the year is 2013, which contradicts the reference answer stating the year is 2010."
+26,PARTIAL,"The answer 'movement' is a broader term that encompasses 'locomotion', making it factually correct but less specific than the reference answer."
+27,HALLUCINATION,"The answer claims '2 people' while the reference only mentions one person, 'Islamic prophet Muhammad'."
+28,HALLUCINATION,The answer 'ET' is not mentioned or implied by the reference answer 'polar'.
+29,CONSISTENT,The answer '60 degrees' is factually consistent with '60°' as 'degrees' is the textual representation of the '°' symbol.
+30,CONSISTENT,"The 1720s is a period that falls within the Rococo era, making the claim factually consistent with the reference."
+31,HALLUCINATION,The answer identifies a different singer (Selena Gomez) than the one specified in the reference answer (Kehlani).
+32,HALLUCINATION,"None of the factual claims (6, Baldwin, Berrien, Cook, Dale, DeKalb, Douglas, Echols, Grady, Irwin, Lowndes, Mitchell, Tift, Turner, Ware, Wilcox) in the answer to evaluate are present in the reference answer 'Fulton'."
+33,CONSISTENT,"The answer to evaluate is identical to the reference answer, containing no additional or missing information."
+34,HALLUCINATION,"The answer claims Curtis Mayfield wrote the music for 'Somewhere in Time', which contradicts the reference answer 'John Barry' and introduces information not present in the provided source of truth."
+35,HALLUCINATION,"The answer to evaluate makes multiple factual claims about Ray Liotta, 'The Marriage of Figaro', and Shawshank Redemption, none of which are mentioned or supported by the reference answer 'Edith Mathis'."
+36,HALLUCINATION,"The answer to evaluate mentions 'Baltimore Ravens', which is not present in the reference answer 'Eagles'."
+37,PARTIAL,The answer correctly states the year but omits the day and month present in the reference.
+38,HALLUCINATION,"The answer states '12 episodes' but the reference answer is '25', making the numerical claim incorrect."
+39,HALLUCINATION,The answer claims '2nd team' which is not mentioned or implied by the reference answer 'the affirmative team'.
+40,HALLUCINATION,"The answer to evaluate claims the year is 27 AD, which directly contradicts the reference answer stating May 5, 1992."
+41,HALLUCINATION,The reference answer 'corn starch' does not contain any information about the percentage of global plastic production using starch-based materials.
+42,HALLUCINATION,"The answer includes a specific day and month (4 February) which is not present in the reference answer, which only states the year '1984'."
+43,HALLUCINATION,The answer to evaluate 'Rubidiumesium' is completely different from the reference answer 'zircon'.
+44,PARTIAL,"The answer '2017' is factually correct and present in the reference answer 'August 21, 2017', but it is not the complete date provided by the reference."
+45,CONSISTENT,The answer to evaluate '1900' is identical to the reference answer '1900'.
+46,HALLUCINATION,The answer '2015' is not mentioned or implied in the reference answer 'In Return of the Jedi'.
+47,HALLUCINATION,"The number provided in the answer to evaluate (28,053) does not match the reference answer (41,629)."
+48,HALLUCINATION,"The answer claims the year is 2011, but the reference states the year is 2008."
+49,CONSISTENT,The answer exactly matches the reference answer.
+50,HALLUCINATION,"The answer '3 young men' introduces factual claims about quantity, age, and gender that are not present in the reference answer 'Meshach'."
+51,HALLUCINATION,"The answer to evaluate discusses breaking down food through enzymes and mechanical action, which is not mentioned or supported by the reference answer's claim of producing lubricating mucus."
+52,HALLUCINATION,"The answer to evaluate contains factual claims about 'Alf Roberts' and 'Georgie Roberts' and their marriage, none of which are present in the reference answer 'Ailsa Stewart'."
+53,HALLUCINATION,"The answer claims the year is 2016, which directly contradicts the reference answer stating the year is 2012."
+54,HALLUCINATION,"The answer '3x21' is completely different and contains no factual information from the reference answer 'May 20, 2010'."
+55,HALLUCINATION,"The answer to evaluate states 'Chris Young', which is not present in the reference answer 'Jonathan Richman'."
+56,HALLUCINATION,"The answer claims the year is 2017, which directly contradicts the reference answer stating 'the end of 2018'."
+57,HALLUCINATION,All factual claims in the answer to evaluate are not present in the provided reference answer.
+58,HALLUCINATION,"All factual claims in the answer to evaluate (US received Statue of Liberty, from France, in 1886) are not present in the reference answer, which only states 'the people of France'."
+59,HALLUCINATION,"The answer introduces claims about 'Hampden Park, Glasgow' and something 'being built', neither of which are mentioned or implied by the reference answer 'the London Borough of Haringey'."
+60,HALLUCINATION,"The answer claims England won, but the reference states West Indies."
+61,HALLUCINATION,"The answer introduces 'Jessica' and the event of 'marrying', neither of which are present in the reference answer, which only states 'Lorenzo'."
+62,HALLUCINATION,The answer '2004' is not present in the reference answer '1980'.
+63,PARTIAL,"The answer includes 'MD' which is present in the reference, but also includes 'DO' which is not mentioned in the reference answer."
+64,HALLUCINATION,"The answer 'Radium' is a chemical element, which is factually distinct from 'helium nuclei' (alpha particles) mentioned in the reference answer."
+65,HALLUCINATION,The answer '3' is completely unrelated to the reference answer 'Titus Welliver' and is not supported by the provided source of truth.
+66,HALLUCINATION,"The answer introduces information about an actor and a franchise that is not present in the reference answer, which only states 'Captain Jean-Luc Picard'."
+67,HALLUCINATION,The name 'Ginevra Weasley' is not present in the reference answer 'Bonnie Francesca Wright'.
+68,HALLUCINATION,"The answer introduces 'Mr. Big' and claims he is a 'rat', neither of which is mentioned or supported by the reference answer 'Arctic shrew'."
+69,HALLUCINATION,The answer 'Ralph Greenberg 1959' contains factual claims (name and date) that are not present in the reference answer 'R&R Partners'.
+70,PARTIAL,"The answer to evaluate provides only the year '2005', which is consistent with the reference answer 'March 18, 2005', but omits the month and day."
+71,PARTIAL,"The answer 'Gutenberg' is consistent with the reference, but the numerical value '2' is not present or supported by the reference answer."
+72,CONSISTENT,"The answer 'Vice President' refers to the same entity as 'the vice president' in the reference, with only minor stylistic differences in capitalization and the definite article."
+73,CONSISTENT,"The answer is factually identical to the reference, differing only in capitalization which does not alter the factual claim."
+74,HALLUCINATION,"The answer claims the job is 'novelist', which contradicts the reference answer's claim that the job is 'pharmaceutical sales rep'."
+75,HALLUCINATION,"The answer to evaluate introduces factual claims about Michael Crawford, Raoul, and the original Broadway production, none of which are mentioned or supported by the reference answer 'Patrick Wilson'."
+76,PARTIAL,"The answer correctly identifies 'Les Républicains' as 'The Republicans' (a translation), but also includes 'Socialist Party' which is not present in the reference answer."
+77,CONSISTENT,The answer '2017' is identical to the reference answer '2017'.
+78,HALLUCINATION,"The answer claims the value is 13, but the reference answer states the value is 27."
+79,HALLUCINATION,"The precentral gyrus is located in the cerebral cortex, but it is not located in the brainstem, making part of the answer factually incorrect."
+80,HALLUCINATION,"The answer claims the entity is a 'Federal republic', but the reference only states 'constitutional republic', thus the term 'Federal' is not supported by the provided source of truth."
+81,PARTIAL,"The answer correctly states the year '2007', which is present in the reference, but omits the month and day."
+82,HALLUCINATION,"The answer 'Kane (2)' is entirely different from the reference answer 'Braun Strowman' and introduces new, unreferenced information."
+83,PARTIAL,The answer '1/2' represents 'half' but omits the crucial context 'the wavelength' present in the reference answer.
+84,HALLUCINATION,"The answer to evaluate contains 'Olympia' and 'Oak Harbor', neither of which are present in the reference answer 'Ocean Shores'."
+85,CONSISTENT,The phrase 'March to June' conveys the same inclusive time period as 'March through June'.
+86,CONSISTENT,The answer to evaluate '1994' is identical to the reference answer '1994'.
+87,HALLUCINATION,"The answer to evaluate claims Christopher Meloni says Detective Olivia Benson's opening monologue, but the reference answer only provides the name Steven M. Zirnkilton, offering no support for any part of the evaluated answer."
+88,HALLUCINATION,"The answer introduces 'T-Series', '109 million subscribers', and 'as of 2023', none of which are mentioned or supported by the reference answer 'PewDiePie'."
+89,HALLUCINATION,"The answer claims the year is 2000, but the reference states the year is 1998."
+90,CONSISTENT,The answer to evaluate is identical to the reference answer.
+91,HALLUCINATION,"The artist named in the answer to evaluate, 'Billy Currington', is not 'Jimmy Yeary' as stated in the reference answer."
+92,HALLUCINATION,"The answer to evaluate introduces claims about 'ancient', 'prophetic', and 'traditions' which are not present in the reference answer 'Judaism', treating the reference as the sole source of truth."
+93,HALLUCINATION,"The answer claims the subject was about Harold Abrahams, which is not mentioned in the reference answer. While Eric Liddell is mentioned, the inclusion of Harold Abrahams constitutes a hallucination based on the provided reference."
+94,PARTIAL,The answer correctly identifies 'democracy' but adds the unsupported specific type 'Parliamentary' which is not present in the reference.
+95,PARTIAL,"The answer '2016' is factually correct and present in the reference answer, but it omits other information ('February 14') also present in the reference."
+96,HALLUCINATION,"The answer claims the person is 'Nicholas Brendon', which is not mentioned or supported by the reference answer 'Jackie Earle Haley'."
+97,HALLUCINATION,The answer '2Pac' is a factual claim that is completely different from the reference answer 'The Pussycat Dolls'.
+98,CONSISTENT,The answer to evaluate is identical to the reference answer.
+99,HALLUCINATION,The answer introduces information about a reed and a saxophone which is not present in the reference answer.
+100,HALLUCINATION,"The answer to evaluate lists three names, none of which are present in the reference answer 'Rachel Weisz'."
