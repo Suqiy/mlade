@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+config.env
+gate_calibration/embeddings_cache.json
+data/
+*.docx
