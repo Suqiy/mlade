@@ -1,19 +1,17 @@
-# ---- Web framework ----
-fastapi>=0.104.0
-uvicorn>=0.24.0
-pydantic>=2.0.0
-python-dotenv>=1.0.0
-
-# ---- Target LLM (Dashscope via OpenAI-compatible API) ----
-openai>=1.0.0
-
-# ---- Stage 3: NLI model (DeBERTa-v3-large, local) ----
-transformers>=4.36.0
-torch>=2.1.0
-
-# ---- Utilities ----
-numpy>=1.24.0
-requests>=2.31.0
-
-# ---- Evaluation ----
-datasets>=2.14.0
+datasets==4.8.4
+fastapi==0.135.3
+langchain_community==0.4.1
+langchain_core==1.2.26
+langchain_openai==1.1.12
+langgraph==1.1.6
+numpy==2.4.4
+openai==2.30.0
+pandas==3.0.2
+protobuf==7.34.1
+pydantic==2.12.5
+python-dotenv==1.2.2
+Requests==2.33.1
+torch==2.11.0
+tqdm==4.67.3
+transformers==5.5.0
+uvicorn==0.44.0
